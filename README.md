@@ -1,1 +1,1 @@
-Triggering clean deploy - GearHead Gho
+Triggering clean deploy - GearHead Ghost

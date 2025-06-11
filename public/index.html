@@ -1,22 +1,31 @@
-
 <!DOCTYPE html>
 <html>
-<head><title>GearHead Ghost</title></head>
+<head>
+  <title>GearHead Ghost</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #111; color: #eee; text-align: center; padding: 40px; }
+    img.logo { width: 300px; margin-bottom: 20px; }
+    button { padding: 12px 24px; margin: 10px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background-color: #ff4400; color: white; }
+    button:hover { background-color: #dd3300; }
+  </style>
+</head>
 <body>
-<h1>Welcome to GearHead Ghost!</h1>
-<button onclick="subscribe('monthly')">Subscribe - $5/month</button>
-<button onclick="subscribe('lifetime')">Lifetime - $20</button>
-<script>
-function subscribe(plan) {
-  fetch('/create-checkout-session', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ plan })
-  })
-  .then(res => res.json())
-  .then(data => window.location = data.url)
-  .catch(err => alert("Payment error: " + err.message));
-}
-</script>
+  <img src="gearhead-logo.png" alt="GearHead Ghost Logo" class="logo">
+  <h1>Welcome to GearHead Ghost</h1>
+  <p>Powered by <strong>QuickShift</strong> ⚙️</p>
+  <button onclick="subscribe('monthly')">Subscribe - $5/month</button>
+  <button onclick="subscribe('lifetime')">Lifetime - $20</button>
+  <script>
+    function subscribe(plan) {
+      fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ plan })
+      })
+      .then(res => res.json())
+      .then(data => window.location = data.url)
+      .catch(err => alert("Payment error: " + err.message));
+    }
+  </script>
 </body>
 </html>

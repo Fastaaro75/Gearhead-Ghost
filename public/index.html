@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>GearHead Ghost</title></head>
+<body>
+<h1>Welcome to GearHead Ghost!</h1>
+<button onclick="subscribe('monthly')">Subscribe - $5/month</button>
+<button onclick="subscribe('lifetime')">Lifetime - $20</button>
+<script>
+function subscribe(plan) {
+  fetch('/create-checkout-session', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ plan })
+  })
+  .then(res => res.json())
+  .then(data => window.location = data.url)
+  .catch(err => alert("Payment error: " + err.message));
+}
+</script>
+</body>
+</html>
